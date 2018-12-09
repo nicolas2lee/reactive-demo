@@ -3,7 +3,8 @@
 Cassandra version: 3.11
 
 single cassandra node in docker: 
-docker run -d cassandra:3.11 -p 7000:7000
+
+    docker run -d -p 9042:9042 cassandra:3.11 
 
 #Docker
 ## Base image 
