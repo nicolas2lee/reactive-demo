@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cassandra-cluster-deployment
+#  labels:
+#    app: cassandra
+#    version: 3.11
+spec:
+  selector:
+    matchLabels:
+      app: cassandra
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: cassandra
+    spec:
+      containers:
+        - name: cassandra
+          image: cassandra:3.11
+          ports:
+            - containerPort: 7000
