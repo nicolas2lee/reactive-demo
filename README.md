@@ -11,3 +11,7 @@ single cassandra node in docker:
 docker pull openjdk:11.0 
 ## Maven dockerfile plugin
 The officail site: https://github.com/spotify/dockerfile-maven
+
+#Kafka
+## Base Image
+docker pull confluent/kafka
