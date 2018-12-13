@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       app: kafka
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -17,7 +17,10 @@ spec:
     spec:
       containers:
         - name: kafka-server
-          image: confluent/kafka
+          image: nicolas2lee/kafka
+          command: [/opt/kafka_2.12-2.1.0/bin/kafka-server-start.sh]
+          args: ["/opt/kafka_2.12-2.1.0/config/server.properties", "--override", "zookeeper.connect=zookeeper:2181"]
           ports:
             - containerPort: 9092
+
 

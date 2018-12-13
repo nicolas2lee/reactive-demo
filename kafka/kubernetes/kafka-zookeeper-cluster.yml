@@ -1,23 +1,37 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kafka-zookeeper-cluster
-#  labels:
-#    app: cassandra
-#    version: 3.11
+  name: zookeeper-cluster
 spec:
   selector:
     matchLabels:
-      app: kafka
-  replicas: 2
+      app: zookeeper
+  replicas: 1
   template:
     metadata:
       labels:
-        app: kafka
+        app: zookeeper
     spec:
       containers:
-        - name: kafka-zookeeper
-          image: confluent/kafka
+        - name: zookeeper
+          image: nicolas2lee/kafka
+          #        command: /opt/kafka_2.12-2.1.0/bin/zookeeper-server-start.sh config/zookeeper.properties
           ports:
             - containerPort: 2181
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: zookeeper
+  labels:
+    app: zookeeper
+spec:
+  ports:
+    - name: client-port
+      port: 2181
+      protocol: TCP
+  selector:
+    app: zookeeper
 
